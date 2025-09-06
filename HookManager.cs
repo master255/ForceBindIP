@@ -77,6 +77,7 @@ namespace DHTMoney
             GetPhysicalAdapterIPs(out _localIPv4, out _localIPv6, out _ifIndexIPv4, out _ifIndexIPv6);
             //Console.WriteLine($"IPv4: {_localIPv4} (ifIndex {_ifIndexIPv4})");
             //Console.WriteLine($"IPv6: {_localIPv6} (ifIndex {_ifIndexIPv6})");
+            using (var s = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp)) { }
             // connect
             IntPtr connectPtr = LocalHook.GetProcAddress("ws2_32.dll", "connect");
             _connectHook = LocalHook.Create(connectPtr, new ConnectDelegate(Connect_Hook), null);
